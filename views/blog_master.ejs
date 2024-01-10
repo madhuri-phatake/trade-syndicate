@@ -1,0 +1,447 @@
+<% include layout/header %>
+    <style>
+        .input-field {
+            height: 55px !important
+        }
+
+        /* .tox {
+        height: 350px !important;
+    }
+    .tox-tinymce-aux {
+        position: fixed !important;
+    } */
+
+        .linkproductContainer {
+            max-height: 130px !important;
+            overflow-y: scroll;
+        }
+    </style>
+    <div id="main">
+        <div class="row">
+            <div class="content-wrapper-before transparent_bg"></div>
+
+            <div class="col s12">
+                <div class="container">
+                    <!-- users list start -->
+                    <section>
+                        <div class="row">
+
+                            <div class="col s12">
+                                <nav class="nav-extended">
+                                    <div class="nav-content">
+                                        <ul class="tabs tabs-transparent responsive-navbar-class">
+                                            <!-- <li class="tab"><a href="#blog_category">Blog Category</a>
+                                        </li> -->
+                                            <li class="tab"><a href="#blog_master">Add Blogs</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+
+                            <div id="blog_category" class="col s12" style="display: none;">
+                                <section class="users-list-wrapper section">
+                                    <div class="users-list-filter">
+                                        <div class="card-panel position-relative overflow-hidden">
+                                            <form id="blog_category_form">
+                                                <fieldset class="access-controll">
+                                                    <div class="row">
+                                                        <div class="input-field col l3 mb-0">
+                                                            <input class="m-0" id="blog_category_name"
+                                                                name="blog_category_name" type="text">
+                                                            <label for="blog_category_name"> Category Name </label>
+                                                        </div>
+                                                        <div class="col l3 m-0 parent">
+                                                            <label for="upload_blog_category" class="font-12"
+                                                                title="Upload Blog Category Icon">Upload Blog Category
+                                                                Icon(100x100px):</label>
+                                                            <input type="file" id="blog_category_image"
+                                                                data-append-class="blog_category_container"
+                                                                data-progress-bar="blog_category_bar"
+                                                                data-common-class="blog_category_block"
+                                                                data-subfolder-name="blog_category_images"
+                                                                data-is-multiple="false"
+                                                                onchange="UPLOAD_blog_category(this, event)"
+                                                                accept=".jpg,.png" name="blog_category_image" value="">
+                                                            <div class="progress m-0">
+                                                                <div id="blog_category_bar" class="determinate"
+                                                                    style="width: 0%;">
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="mt-1 spotlight-banner-image-preview blog_category_container">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-field col l2 mb-0">
+                                                            <input class="m-0" id="blog_category_priority"
+                                                                name="blog_category_priority" type="text"
+                                                                onkeypress="return blog_category.isNumberKey(event)"
+                                                                maxlength="2" minlength="1">
+                                                            <label for="blog_category_priority">Enter Priority *</label>
+                                                        </div>
+                                                        <div class="col l1 mt-1">
+                                                            <select class="m-0 p-0 browser-default"
+                                                                id="blog_category_status" name="blog_category_status">
+                                                                <option value="active">Active</option>
+                                                                <option value="inactive">Inactive</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-field col l1 m-0">
+                                                            <button type="submit" id="create_blog_category"
+                                                                class="btn btn-block flex-btn float-left gradient-45deg-green-teal waves-effect waves-light"
+                                                                style="width: auto !important">
+                                                                <span id="create_blog_category_btn">Submit</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- </div> -->
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" val="" id="blog_category_id">
+                                    <div class="users-list-table">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <!-- datatable start -->
+                                                <div class="responsive-table">
+                                                    <table class="table" id="blog_category_table" style="width: 100%">
+
+                                                    </table>
+                                                </div>
+                                                <!-- datatable ends -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div id="blog_master" class="col s12">
+
+                                <!-- <div class="col s12"> -->
+                                <!-- <div class="container"> -->
+                                <input type="hidden" name="blog_id" id="blog_id" value="">
+
+                                <section class="users-list-wrapper section">
+                                    <div class="users-list-filter">
+                                        <div class="card-panel position-relative overflow-hidden"
+                                            style="min-height: 500px;">
+                                            <form id="blog_form">
+                                                <div class="row">
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="title" name="title" type="text">
+                                                        <label for="title"> Title *</label>
+                                                    </div>
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="description" name="description"
+                                                            type="text" maxlength="500"
+                                                            placeholder="Max. 500 characters">
+                                                        <label for="description"> Description *</label>
+                                                    </div>
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0 datepicker" id="blog_date" name="blog_date"
+                                                            type="text" readonly>
+                                                        <label for="blog_date"> Select Date *</label>
+                                                    </div>
+
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="priority" name="priority" type="text"
+                                                            onkeypress="return blog.isNumberKey(event)" maxlength="2"
+                                                            minlength="1">
+                                                        <label for="priority">Enter Priority *</label>
+                                                    </div>
+
+                                                    <div class="input-field col l3 mb-3 parent">
+                                                        <label for="blog_icon" class="font-12" style="position: unset;"
+                                                            title="Upload blog Icon">Upload
+                                                            Cover(1200x400px):</label>
+                                                        <input type="file" id="blog_icon"
+                                                            data-append-class="blog_icon_container"
+                                                            data-progress-bar="blog_icon_bar"
+                                                            data-common-class="blog_icon"
+                                                            data-subfolder-name="blog_icons" data-is-multiple="false"
+                                                            title="Upload blog Icon" onchange="UPLOAD_ICON(this, event)"
+                                                            name="blog_icon" value="" accept=".jpg, .png">
+                                                        <div class="progress m-0">
+                                                            <div id="blog_icon_bar" class="determinate"
+                                                                style="width: 0%;"></div>
+                                                        </div>
+                                                        <div class="product-image-preview blog_icon_container">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-field col l3 mb-3 parent">
+                                                            <label for="blog_thumbnail_icon" class="font-12" style="position: unset;"  title="Upload blog thumbnail Icon">Upload thumbnail(305x382px):</label>
+                                                            <input type="file" id="blog_thumbnail_icon"
+                                                                data-append-class="blog_thumbnail_icon_container"
+                                                                data-progress-bar="blog_thumbnail_icon_bar"
+                                                                data-common-class="blog_thumbnail_icon"
+                                                                data-subfolder-name="blog_thumbnail_icons"
+                                                                data-is-multiple="false" 
+                                                                title="Upload blog Icon"
+                                                                onchange="UPLOAD_THUMBNAIL_ICON(this, event)"
+                                                                name="blog_thumbnail_icon" value="" 
+                                                                accept=".jpg, .png">
+                                                            <div class="progress m-0">
+                                                                <div id="blog_thumbnail_icon_bar" class="determinate"
+                                                                    style="width: 0%;"></div>
+                                                            </div>
+                                                            <div class="product-image-preview blog_thumbnail_icon_container">
+                    
+                                                            </div>
+                                                        </div>
+
+                                                    <!-- <div class="input-field col l3 mb-0">
+                                                            <input class="m-0" id="blog_link" name="blog_link"
+                                                                type="text">
+                                                            <label for="blog_link"> Blog Link *</label>
+                                                        </div> -->
+
+                                                    <div class="input-field col l3 mb-0">
+                                                        <select class="m-0 p-0 browser-default" id="blog_status"
+                                                            name="blog_status">
+                                                            <option value="active">Active</option>
+                                                            <option value="inactive">Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="blog_meta_tags" name="blog_meta_tags"
+                                                            type="text">
+                                                        <label for="blog_meta_tags">Blog Meta Tags</label>
+                                                    </div>
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="blog_url" name="blog_url" type="text">
+                                                        <label for="blog_url">Blog URL</label>
+                                                    </div>
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="meta_title" name="meta_title" type="text"
+                                                            maxlength="150">
+                                                        <label for="meta_title">Meta title</label>
+                                                    </div>
+                                                    <div class="input-field col l3 mb-0">
+                                                        <input class="m-0" id="meta_dec" name="meta_dec" type="text"
+                                                            maxlength="200">
+                                                        <label for="meta_dec">Meta description</label>
+                                                    </div>
+                                                    <div class="input-field col l12 mb-0 mt-4"
+                                                        style="height: 100% !important;">
+                                                        <h6>Description *</h6>
+                                                        <textarea id="detail_description"
+                                                            name="detail_description"></textarea>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col l12 show-btn mt-2">
+                                                        <button type="submit" id="create_blog"
+                                                            class="btn btn-block flex-btn float-right indigo waves-effect waves-light"
+                                                            style="width: auto !important;margin-left: 20px;">
+                                                            <span id="create_blog_btn">Submit</span>
+                                                        </button>
+                                                        <button id="create_cancel_btn" type="reset"
+                                                        class="btn btn-block flex-btn float-right indigo waves-effect waves-light"
+                                                        style="width: auto !important;margin-left: 20px; display: none;">
+                                                       Cancel
+                                                    </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="user_id" value="" id="user_id">
+                                    <div class="users-list-table">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <!-- datatable start -->
+                                                <div class="responsive-table">
+                                                    <table class="table" id="blog_table" style="width: 100%">
+
+                                                    </table>
+                                                </div>
+                                                <!-- datatable ends -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- </div> -->
+                                <div class="content-overlay"></div>
+                                <!-- </div> -->
+                                <div id="detail_description_modal" class="modal" style="width:80%">
+                                    <div class="modal-content">
+                                        <div class="row">
+                                            <h5>Detail Description</h5>
+                                            <hr>
+                                            <div id="append_detail_description"></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close_description_modal"
+                                            class="btn modal-action modal-close waves-effect waves-light gradient-45deg-deep-orange-orange">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include layout/footer %>
+        <script src="admin/custom/blog.js"></script>
+        <script src="admin/custom/blog_category.js"></script>
+        <script type="text/javascript" src="/admin/js/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            $(".varient_products").select2({
+                multiple: true
+            });
+
+            $(function () {
+                blog.base_url = "<%=baseURL%>";
+                blog.api_url = "<%=apiURL%>";
+                blog.user_id = "<%=user_id%>";
+                blog.init();
+            });
+            $(function () {
+                blog_category.base_url = "<%=baseURL%>";
+                blog_category.api_url = "<%=apiURL%>";
+                blog_category.init();
+            });
+            $(document).ready(function () {
+                $('.datepicker').datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    maxDate: new Date()
+                });
+                tinymce.init({
+                    selector: "#detail_description",
+                    height: "400",
+                    plugins: 'textcolor colorpicker print preview image importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help',
+                    toolbar: 'media | forecolor  | link image | code | undo redo | blocks | bold italic underline  | alignleft aligncenter alignright alignjustify | indent outdent | wordcount | fontselect  | fontsizeselect |',
+                    file_picker_types: 'image media',
+
+                    font_formats: 'Arial=arial,helvetica,sans-serif;Comic Sans MS=comic sans ms,sans-serif;Times New Roman=times new roman,times,serif;Verdana=verdana,geneva,sans-serif;' +
+                        'Courier New=courier new,courier,monospace;Georgia=georgia,times new roman,times,serif;Trebuchet MS=trebuchet ms,geneva,sans-serif;' +
+                        'Lucida Console=lucida console,monaco,monospace;Impact=impact,charcoal,sans-serif;Palatino=palatino,georgia,times new roman,times,serif',
+                    textcolor_rows: "4",
+                    
+                    images_file_types: 'jpg,svg,webp,png',
+                    // file_picker_callback: (callback, value, meta) => {
+                    //     const input = document.createElement('input');
+                    //     var bucketName = "adbanao";
+                    //     var s3 = new AWS.S3({
+                    //         apiVersion: "2006-03-01",
+                    //         params: {
+                    //             Bucket: bucketName,
+                    //         },
+                    //     });
+                    //     input.setAttribute('type', 'file');
+                    //     input.setAttribute('accept', 'image/*');
+                    //     input.addEventListener('change', (e) => {
+                    //         const file = e.target.files[0];
+                    //         var bucketName = "adbanao";
+                    //         var s3 = new AWS.S3({
+                    //             apiVersion: "2006-03-01",
+                    //             params: {
+                    //                 Bucket: bucketName,
+                    //             },
+                    //         });
+                    //         if (file) {
+                    //             var Extension = file.name.substring(file.name.lastIndexOf(".") + 1).toLowerCase();
+                    //             var fileName = file.name.split(".");
+                    //             var filePath = "blog_images/" + fileName[0] + "." + Extension;
+                    //             var fileUrl = "https://adbanao-blog-imgs.com/" + filePath;
+                    //             s3.upload({
+                    //                 Key: filePath,
+                    //                 Body: file,
+                    //                 ACL: 'public-read'
+                    //             }, function (err, data) {
+                    //                 if (err) {
+                    //                     reject('error');
+                    //                 } else {
+                    //                     if (meta.filetype == 'image') {
+                    //                         callback(`${data.Location}`, { alt: fileName[0] });
+                    //                     }
+                    //                 }
+
+                    //             }).on('httpUploadProgress', function (progress) {
+                    //                 var uploaded = parseInt((progress.loaded * 100) / progress.total);
+                    //                 $("progress").attr('value', uploaded);
+                    //             });
+                    //         }
+
+                    //     });
+                    //     input.click();
+                    // }
+                    file_picker_callback: (callback, value, meta) => {
+                        const input = document.createElement('input');
+                        input.setAttribute('type', 'file');
+                        input.setAttribute('accept', 'image/*,video/*');
+
+                        // Maximum file sizes in MB for image and video
+                        const maxImageSizeMB = 1; // Maximum image file size in MB
+                        const maxVideoSizeMB = 5; // Maximum video file size in MB
+
+                        input.addEventListener('change', (e) => {
+                            const file = e.target.files[0];
+                            if (file) {
+                                const fileSizeMB = file.size / (1024 * 1024); // File size in MB
+
+                                if (file.type.startsWith('image/') && fileSizeMB > maxImageSizeMB) {
+                                    alert(`Image file size exceeds the limit (${maxImageSizeMB}MB)`);
+                                    return;
+                                }
+
+                                if (file.type.startsWith('video/') && fileSizeMB > maxVideoSizeMB) {
+                                    alert(`Video file size exceeds the limit (${maxVideoSizeMB}MB)`);
+                                    return;
+                                }
+
+                                const bucketName = "marspoles-website";
+                                const s3 = new AWS.S3({
+                                    apiVersion: "2006-03-01",
+                                    params: { Bucket: bucketName },
+                                });
+
+                                const Extension = file.name.substring(file.name.lastIndexOf(".") + 1).toLowerCase();
+                                const fileName = file.name.split(".");
+                                const filePath = `${meta.filetype === 'image' ? 'blog_images' : 'blog_videos'}/${fileName[0]}.${Extension}`;
+
+                                s3.upload({
+                                    Key: filePath,
+                                    Body: file,
+                                    ACL: 'public-read'
+                                }, function (err, data) {
+                                    if (err) {
+                                        console.error('Error uploading file:', err);
+                                        return;
+                                    }
+
+                                    const fileUrl = data.Location;
+                                    callback(fileUrl); // Always returns the file URL
+
+                                    if (meta.filetype === 'image') {
+                                        callback(fileUrl, { alt: fileName[0] }); // If it's an image, also pass alt text
+                                    }
+                                }).on('httpUploadProgress', function (progress) {
+                                    const uploaded = parseInt((progress.loaded * 100) / progress.total);
+                                    $("progress").attr('value', uploaded);
+                                });
+                            }
+                        });
+                        input.click();
+                    }
+
+
+
+
+
+
+                });
+                $('.modal').modal();
+            });
+        </script>

@@ -1,0 +1,15 @@
+@media only screen and (max-width: 768px) {
+    .nav-pills > li.active > a, .nav-pills .nav-link.active{
+        background-color: unset;
+    }
+    .current-page-active{
+        background-color: unset;
+    }
+    .header-nav-top .nav-pills{
+        display: flex;
+        gap: 125px;
+    }
+    .grid-container {
+        grid-template-columns: 1fr; /* Display one item per row on smaller screens */
+      }
+}

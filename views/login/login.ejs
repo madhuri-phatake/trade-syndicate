@@ -1,0 +1,183 @@
+<% include  login_header %>
+
+<style>
+    .error {
+        margin-left: 4em;
+    }
+    .input-field{
+        font-size: 14px;
+    }
+    .mobile_number{
+        height: 40px !important;
+    }
+    .mobile-number-lable{
+        font-size: 14px !important;
+    }
+    .forget-pass{
+        font-size: 14px !important;
+    }
+    #login_btn{
+        font-size: 16px !important;
+    }
+    .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+</style>
+<body
+    class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 1-column login-bg   blank-page blank-page"
+    data-open="click" data-menu="vertical-modern-menu" data-col="1-column">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                <div id="login-page" class="row">
+                    <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
+                        <form class="login-form" id="login-form">
+                            <div class="row">
+                                <div class="input-field col s12 " align="center">
+                                    <h4 class="">Trades Syndicate</h4>
+                                    <p>Enter registered mobile number below.</p>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix ">phone_outline</i>
+                                    <input id="mobile_number" name="mobile_number" class="mobile_number"type="text" maxlength="10" onkeypress="return login.isNumberKey(event);">
+                                    <label for="mobile_number" class="center-align mobile-number-lable">Mobile Number</label>
+                                </div>
+                            </div>
+                            <div class="row margin password" style="display: none;">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix ">lock_outline</i>
+                                    <input id="password" name="password" type="password">
+                                    <i class="material-icons prefix pt-2 toggle-password" toggle="#password" style="height: 40px;width: 40px;text-align: justify;line-height: 40px;margin-left: -22px;margin-top: -4%;position: absolute; right:0;cursor: pointer;">remove_red_eye</i>                                    
+                                    <label for="password">Password</label>
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button id="login_btn" type="button"
+                                        class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12">Login</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6 m6 l6">
+                                </div>
+                                <div class="input-field col s6 m6 l6">
+                                    <p class="margin right-align medium-small forget-pass"><a href="/forgot-password">Forgot password
+                                            ?</a></p>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="otp-form" id="otp-form" style="display: none;">
+                            <div class="row">
+                                <div class="input-field col s12 " align="center">
+                                    <h5 class="ml-4">OTP Verification</h5>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix pt-2">phone_outline</i>
+                                    <input id="otp" name="otp" type="text">
+                                    <label for="otp" class="center-align">OTP</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button type="submit" id="otp_submit"
+                                        class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12">
+                                        Submit</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6 m6 l6">
+                                </div>
+                                <div class="input-field col s6 m6 l6">
+                                    <p class="margin right-align medium-small forget-pass"><a href="/login">Back to Login ?</a></p>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="password-form" id="password-form" style="display: none;">
+                            <div class="row">
+                                <div class="input-field col s12 " align="center">
+                                    <h5 class="ml-4">Create New Password</h5>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix pt-2">lock_outline</i>
+                                    <input id="n_password" name="n_password" type="password">
+                                    <label for="n_password" class="center-align">Password</label>
+                                </div>
+                                <div class="error-div"></div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix pt-2">lock_outline</i>
+                                    <input id="c_password" name="c_password" type="password">
+                                    <label for="c_password">Confirm Password</label>
+                                </div>
+                                <div class="error-div"></div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button id="create_new_password" type="submit"
+                                        class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12">Submit
+                                    </button>
+                                </div>
+                                <div class="error-div"></div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6 m6 l6">
+                                </div>
+                                <div class="input-field col s6 m6 l6">
+                                    <p class="margin right-align medium-small"><a href="/login">Back to Login?</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="content-overlay"></div>
+        </div>
+    </div>
+    <% include login_footer %>
+
+    <script src="/admin/custom/login.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $('.toggle-password').click(function() {
+        var passwordInput = $('#password');
+        var icon = $(this);
+
+        // Toggle password visibility
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            icon.text('visibility_off'); // Change eye icon to closed eye
+        } else {
+            passwordInput.attr('type', 'password');
+            icon.text('visibility'); // Change eye icon to open eye
+        }
+    });
+});
+
+
+        $(function () {
+            login.base_url = "<%=baseURL%>";
+            login.init();
+        });
+    </script>
